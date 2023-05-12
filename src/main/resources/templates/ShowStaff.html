@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+	   <table class="table table-bordered" >
+		  <thead>
+		    <tr>
+		      <th scope="col">staffname </th>
+		      <th scope="col">password</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="staff: ${ListStaff}">
+		      <th scope="row" th:text="${staff.staffname}"></th>
+		      <th scope="row" th:text="${staff.staffpassword}"></th>		     
+		    </tr>
+		  </tbody>
+	</table>
+</div>
+</body>
+</html>

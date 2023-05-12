@@ -1,0 +1,199 @@
+<!-- 
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Office</title>
+	<style>
+		h1 {
+  text-align: center;
+}
+	/* Style cho table */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+/* Style cho Add Product */
+a {
+  display: inline-block;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+.centered-text {
+  text-align: center;
+}
+a:hover {
+  background-color: #d32f2f;
+}
+	
+	</style>
+</head>
+<body>
+	<h1>New Office</h1>
+	<form th:action="@{/To-AddOffice(building_id=${building_id})}" th:object="${NewOffice}" method ="post">
+		<label>Office Name:</label>
+		<input type="text" th:value="${name}" th:field="*{name}" />		
+		<p><i th:text="${mess1}"></i></p>					
+		<br>
+		<label>Office Price:</label>
+		<input type="text" th:value="${address}" th:field="*{price}" />		
+		<p><i th:text="${mess3}"></i></p>	
+		<br>
+		<label>Office Description:</label>
+		<input type="text" th:value="${description}" th:field="*{description}" />		
+		<p><i th:text="${mess2}"></i></p>
+		<br>		
+		<input type="submit" value="Add Office" id="submit">
+	</form>
+
+</body>
+</html>> -->
+
+
+
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Office</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+	<style>
+		h1 {
+  text-align: center;
+}
+
+	</style>
+</head>
+<body>
+  <div class = 'header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn" href="ShowBulding">Show Building</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="ListInvoice">List Invoice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="Stat">Stat</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link btn" href="ListService">ListService</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class = 'container'>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <!-- <div class="card"> -->
+          <h1>New Office</h1>
+	<form th:action="@{/To-AddOffice(building_id=${building_id})}" th:object="${NewOffice}" method ="post">
+		<div class="form-group">
+			<label for="name">Office Name:</label>
+			<input type="text" class="form-control" th:value="${name}" th:field="*{name}" id="name">
+			<p><i th:text="${mess1}"></i></p>
+		</div>
+		<div class="form-group">
+			<label for="price">Office Price:</label>
+			<input type="text" class="form-control" th:value="${address}" th:field="*{price}" id="price">
+			<p><i th:text="${mess3}"></i></p>
+		</div>
+		<div class="form-group">
+			<label for="description">Office Description:</label>
+			<input type="text" class="form-control" th:value="${description}" th:field="*{description}" id="description">
+			<p><i th:text="${mess2}"></i></p>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Add Office" id="submit">
+	</form>
+
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

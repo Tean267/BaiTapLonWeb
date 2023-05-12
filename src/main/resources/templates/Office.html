@@ -1,0 +1,203 @@
+<!-- 
+<!DOCTYPE html >
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+<style >
+h1 {
+  text-align: center;
+}
+	/* Style cho table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+td:nth-child(3) {
+  text-align: right;
+}
+
+/* Style cho nút */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* Style cho Add Product */
+a {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+
+
+a:hover {
+  background-color: #d32f2f;
+}
+</style>
+</head>
+
+<body>
+	<h1>Office</h1>
+	<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>NameCompany</th>
+      <th>Price</th>
+      <th>Description</th>
+    
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  		<tr  th:each="o:${OfficeOfBuilding}">
+      		<td th:text="${o.id}"></td>
+      		<td th:text="${o.name}"></td>
+      		<td th:text="${o.company ==null ?'Office Free' : o.company.name}"></td>
+      		<td th:text="${o.price}"></td>
+     		<td th:text="${o.description}"></td>
+		    <td><a th:href="@{/DeleteContract/{office_id}(office_id=${office_id},id=${o.id})}">Delete</a></td>
+		 
+		    <td><a th:href="@{/DetailService(id=${o.id})}">Detail</a></td>
+		    <td><a th:href="@{/Contract(id=${o.id})}">ToContract</a></td>
+		    <td><a th:href="@{/Invoice(id=${o.id})}">ToInvoice</a></td>
+  	  </tr>
+  
+    
+  </tbody>
+</table><br>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Office</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+	<style>
+		h1 {
+  text-align: center;
+}
+
+	</style>
+</head>
+<body>
+  <div class = 'header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn" href="ShowBulding">Show Building</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="ListInvoice">List Invoice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="Stat">Stat</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link btn" href="ListService">ListService</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class = 'container'>
+    <h1>Office</h1>
+    <p><a th:href="@{/AddOffice/{building_id}(building_id=${office_id})}">Add Office</a></p>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Company Name</th>
+	      <th>Price</th>
+	      <th>Description</th>
+	      <th></th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="o:${OfficeOfBuilding}">
+	      <td th:text="${o.name}"></td>
+	      <td th:text="${o.company ==null ?'........' : o.company.name}"></td>
+	      <td th:text="${o.price}+'$'"></td>
+	      <td th:text="${o.description}"></td>
+	      <td><a class="btn btn-danger" th:href="@{/DeleteContract/{office_id}(office_id=${office_id},id=${o.id})}">Delete</a></td>
+	      <td><a class="btn btn-info" th:href="@{/DetailService(id=${o.id})}">Detail</a></td>
+	      <td th:if="${o.company ==null}"><a class="btn btn-primary" th:href="@{/Contract(id=${o.id})}">To Contract</a></td>
+	      <td th:if="${o.company !=null}"><a class="btn btn-warning" th:href="@{/Invoice(id=${o.id})}">To Invoice</a></td>
+	    </tr>
+	  </tbody>
+	</table>
+	
+</div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

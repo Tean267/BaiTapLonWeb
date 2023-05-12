@@ -1,0 +1,233 @@
+<!-- 
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>AddProduct</title>
+	<style>
+		h1 {
+  text-align: center;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+a {
+  display: inline-block;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+.centered-text {
+  text-align: center;
+}
+a:hover {
+  background-color: #d32f2f;
+}
+	
+	</style>
+</head>
+<body>
+	<h1>INVOICE</h1>
+	<p class="centered-text">You must enter a description for the Building.</p>
+	<form th:action="@{/ToInvoice(office_id=${invoice.office.id})}" th:object="${invoice}" method ="post">
+		<label>Invoice Name:</label>
+		<input type="text" th:value="${invoice.office.name}"  />	
+		<br>
+		<label>Company Name:</label>
+		<input type="text" th:value="${invoice.office.company.name}" />	
+		<br>
+		<label>Invoice Date:</label>	
+		<input type="date"  th:field="*{invoiceDate}"/>					
+		<br>
+		
+		
+		
+		<label>Service Price:</label>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="a:${serviceUse}">
+					<td th:text="${a.name}"></td>
+					<td th:text="${a.price}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<label>Total Money:</label>
+		<input type="text"  th:field="*{totalMoney}"/>		
+		<input type="submit" value="Save" id="submit">
+	</form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html >
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Invoice</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+<style >
+h1 {
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<div class = 'header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn" href="ShowBulding">Show Building</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="ListInvoice">List Invoice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="Stat">Stat</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link btn" href="ListService">ListService</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+ 
+  <div class="container">
+		<h1>Invoice</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<form th:action="@{/ToInvoice(office_id=${invoice.office.id})}" th:object="${invoice}" method ="post">
+				<div class="form-group">
+					<label for="invoiceName">Invoice Name:</label>
+					<input type="text" class="form-control" id="invoiceName" th:value="${invoice.office.name}" />
+				</div>
+				<div class="form-group">
+					<label for="companyName">Company Name:</label>
+					<input type="text" class="form-control" id="companyName" th:value="${invoice.office.company.name}" />
+				</div>
+				<div class="form-group">
+					<label for="invoiceDate">Invoice Date:</label>
+					<input type="date" class="form-control" id="invoiceDate" th:field="*{invoiceDate}" />
+				</div>
+				<div class="form-group">
+					<label for="servicePrice">Service Price:</label>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a:${serviceUse}">
+								<td th:text="${a.name}"></td>
+								<td th:text="${a.price}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="form-group">
+					<label for="totalMoney">Total Money:</label>
+					<input type="text" class="form-control" id="totalMoney" th:field="*{totalMoney}" />
+				</div>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+	</div>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

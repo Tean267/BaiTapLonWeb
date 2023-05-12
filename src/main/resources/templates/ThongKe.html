@@ -1,0 +1,198 @@
+<!-- 
+<!DOCTYPE html >
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+<style >
+h1 {
+  text-align: center;
+}
+	/* Style cho table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+td:nth-child(3) {
+  text-align: right;
+}
+
+/* Style cho nút */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* Style cho Add Product */
+a {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+
+
+a:hover {
+  background-color: #d32f2f;
+}
+</style>
+</head>
+
+<body>
+	<h1>Buildings</h1>
+	<form th:action="@{/SearchStat}" method="post">
+	
+		<label>Search:</label>
+		<input type="text"  name="Date"/>	
+		<button type="submit">Search</button>
+	</form>
+		<table>
+  <thead>
+    <tr>
+       <th>Office Name</th>
+       <th>Company Name</th>
+       <th>Invoice Date</th>
+      <th>Payment Date</th>
+      <th>Total Money</th>
+    </tr>
+  </thead>
+  <tbody>
+  		<tr  th:each="i:${listInvoices}">
+      		<td th:text="${i.office.name}"></td>
+      		<td th:text="${i.office.company.name}"></td>
+      		<td th:text="${i.invoiceDate}"></td>
+     		<td th:text="${i.paymentDate}"></td>
+     		<td th:text="${i.totalMoney}"></td>
+  	  </tr>  
+  </tbody>
+</table><br>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>AddProduct</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+	<style>
+		h1 {
+  text-align: center;
+}
+
+	</style>
+</head>
+<body>
+  <div class = 'header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn" href="ShowBulding">Show Building</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="ListInvoice">List Invoice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="Stat">Stat</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link btn" href="ListService">ListService</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class = 'container'>
+    <h1>Stat</h1>
+	<form th:action="@{/SearchStat}" method="post">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" name="Date" placeholder="Search...">
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="submit">Search</button>
+			</div>
+		</div>
+	</form>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Office Name</th>
+				<th>Company Name</th>
+				<th>Invoice Date</th>
+				<th>Payment Date</th>
+				<th>Total Money</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  th:each="i:${listInvoices}" > 
+          <td th:text="${i.office.name}"></td>
+            <td th:text="${i.office.company!=null ? i.office.company.name : 'Đã hủy hợp đồng'}"></td>
+            <td th:text="${i.invoiceDate}"></td>
+           <td th:text="${i.paymentDate}"></td>
+           <td th:text="${i.totalMoney} +'$'"></td>
+		</tbody>
+	</table><br>
+  </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+
+<!DOCTYPE html >
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Building</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+<style >
+h1 {
+  text-align: center;
+}
+/* table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+td:nth-child(3) {
+  text-align: right;
+} */
+
+/* Style cho nút */
+/* button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+} */
+
+/* button:hover {
+  background-color: #3e8e41;
+} */
+
+/* Style cho Add Product */
+/* a {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+
+
+a:hover {
+  background-color: #d32f2f;
+} */
+</style>
+</head>
+
+<body>
+	<div class = 'header'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn" href="ShowBulding">Show Building</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="ListInvoice">List Invoice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn" href="Stat">Stat</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link btn" href="ListService">ListService</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!-- <div class="body">
+    <h1>Buildings</h1>
+	<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+       <th>Name</th>
+       <th>Address</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  		<tr  th:each="p:${listInvoices}">
+      		<td th:text="${p.id}"></td>
+      		<td th:text="${p.name}"></td>
+      		<td th:text="${p.address}"></td>
+     		<td th:text="${p.description}"></td>
+		    <td> <a th:href="@{/ShowPtoEdit(productCode=${p.id})}">Edit</a></td>
+		    <td><a th:href="@{/DetailOffice(id=${p.id})}">Detail</a></td>
+  	  </tr>
+  
+    
+  </tbody>
+</table><br>
+<div style=" margin-right: 350px;">
+  <a href="/AddBuilding">Add Building</a>
+  </div> -->
+  <div class="container">
+		<h1 class="mt-4">Buildings</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Description</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p:${listInvoices}">
+					<td th:text="${p.id}"></td>
+					<td th:text="${p.name}"></td>
+					<td th:text="${p.address}"></td>
+					<td th:text="${p.description}"></td>
+					<td>
+						<a class="btn btn-primary" th:href="@{/Edit(id=${p.id})}">
+							Edit
+						</a><br>
+						<a class="btn btn-info" th:href="@{/DetailOffice(id=${p.id})}">
+							Detail
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="text-right">
+			<a class="btn btn-success" href="/AddBuilding">
+				Add Building
+			</a>
+		</div>
+	</div>
+  </div>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

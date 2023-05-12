@@ -1,0 +1,78 @@
+<!-- <!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:if="${message}">
+		<p th:text="${message}"></p>
+	</div> 
+	<form th:action="@{/Login}"  th:object="${stafff}" method="post">
+		<div class="form-outline mb-4">
+			<input type="email" id="form2Example1" class="form-control"th:field="*{staffname}" /> 
+			<label class="form-label" for="form2Example1">Email address</label>
+		</div>
+
+		<div class="form-outline mb-4">
+			<input type="password" id="form2Example2" class="form-control" th:field="*{staffpassword}" /> <label
+				class="form-label" for="form2Example2"  >Password</label>
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
+
+	</form>
+	
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>AddProduct</title>
+<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+	<style>
+		h1 {
+  text-align: center;
+}
+
+	</style>
+</head>
+<body>
+ 
+  <h1>Login</h1>
+  <div class="container mt-5">
+	<div class="row justify-content-center">
+	  <div class="col-md-6">
+		<div th:if="${message}" class="alert alert-danger" role="alert">
+		  <p th:text="${message}"></p>
+		</div>
+		<form th:action="@{/ToLogin}"  th:object ="${admin}" method="post">
+		  <div class="form-floating mb-3">
+			  <label for="staffname">UserName:</label>
+			<input type="text"  name="name" th:field="*{username}" class="form-control">
+		  </div>
+		  <div class="form-floating mb-3">
+			  <label for="staffpassword">Password</label>
+			<input type="password"  th:field="*{password}" name="password" class="form-control" >
+		  </div>
+		  <button type="submit" class="btn btn-primary btn-block mb-3">Log in</button>
+		</form>
+	  </div>
+	</div>
+  </div>
+  
+  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <!-- Thêm script của Bootstrap -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

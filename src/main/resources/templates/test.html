@@ -1,0 +1,109 @@
+
+<!DOCTYPE html >
+<html xmlns=http://www.w3.org/1999/xhtml
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+<style >
+h1 {
+  text-align: center;
+}
+	/* Style cho table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+td:nth-child(3) {
+  text-align: right;
+}
+
+/* Style cho nút */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* Style cho Add Product */
+a {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+
+
+a:hover {
+  background-color: #d32f2f;
+}
+</style>
+</head>
+
+<body>
+	<h1>Buildings</h1>
+	<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+  	<!-- 	<tr  th:each="p:${selectedServices}">
+      		<td th:text="${p}"></td>
+      		
+  	  </tr> -->
+   	<tr  th:each="p:${office}">
+      		<td th:text="${p.name}"></td>
+      		<td th:text="${p.company.name}"></td>
+      	
+      		
+  	  </tr> 
+    
+  </tbody>
+</table><br>
+<div style=" margin-right: 350px;">
+  <a href="/AddProduct">Add Building</a>
+  </div>
+</body>
+</html>
