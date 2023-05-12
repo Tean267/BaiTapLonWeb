@@ -102,7 +102,19 @@ public class OfficeController {
 		 */
 //		List<Company> company = companyService.findAll();
 		model.addAttribute("office",office);
-		return "test";
+	// láy id_building toa nha de tra ve danh sach office
+	List<Building> building = buildingServiceImpl.findAllBuilding();	
+	Long building_id =(long) 0;		
+			for(Building b : building) {	
+				for(Office o : b.getOffices()) {
+					if(o.equals(office)) {
+						building_id = b.getId();
+						break;
+					}
+				}
+				
+			}
+			return "redirect:/DetailOffice?id="+building_id;
 	
 	}
 	
