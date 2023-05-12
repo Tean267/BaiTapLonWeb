@@ -166,7 +166,7 @@ a:hover {
   </div>
   <div class = 'container'>
     <h1>Office</h1>
-    <p><a th:href="@{/AddOffice/{building_id}(building_id=${office_id})}">Add Office</a></p>
+    <p><a class="btn btn-success" th:href="@{/AddOffice/{building_id}(building_id=${office_id})}">Add Office</a></p>
 <div class="table-responsive">
 	<table class="table table-bordered table-hover">
 	  <thead>
@@ -175,20 +175,31 @@ a:hover {
 	      <th>Company Name</th>
 	      <th>Price</th>
 	      <th>Description</th>
-	      <th></th>
-	      <th></th>
+	      <th>Delete</th>
+	      <th>Edit</th>
+	      <th>Detail</th>
+	      <th>Contract</th>
+	      <th>Invoice</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr th:each="o:${OfficeOfBuilding}">
 	      <td th:text="${o.name}"></td>
-	      <td th:text="${o.company ==null ?'........' : o.company.name}"></td>
+	      <td th:text="${o.company ==null ?'' : o.company.name}"></td>
 	      <td th:text="${o.price}+'$'"></td>
 	      <td th:text="${o.description}"></td>
-	      <td><a class="btn btn-danger" th:href="@{/DeleteContract/{office_id}(office_id=${office_id},id=${o.id})}">Delete</a></td>
-	      <td><a class="btn btn-info" th:href="@{/DetailService(id=${o.id})}">Detail</a></td>
+	      
+	      <td th:if="${o.company != null}"><a class="btn btn-danger" th:href="@{/DeleteContract/{office_id}(office_id=${office_id},id=${o.id})}">End a contract</a></td>
+	      <td th:if="${o.company == null}"></td>
+	       
+	      <td><a class="btn btn-secondary" th:href="@{/EditOffice/{building_id}(building_id=${office_id},id=${o.id})}">Edit Office</a></td>
+	      <td><a class="btn btn-info"  th:href="@{/DetailService(id=${o.id})}">Detail</a></td>
+	      
 	      <td th:if="${o.company ==null}"><a class="btn btn-primary" th:href="@{/Contract(id=${o.id})}">To Contract</a></td>
+	        <td th:if="${o.company !=null}"></td>
+	        
 	      <td th:if="${o.company !=null}"><a class="btn btn-warning" th:href="@{/Invoice(id=${o.id})}">To Invoice</a></td>
+	       <td th:if="${o.company ==null}"></td>
 	    </tr>
 	  </tbody>
 	</table>

@@ -4,7 +4,7 @@
 			xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>AddProduct</title>
+<title>Add Office</title>
 	<style>
 		h1 {
   text-align: center;
@@ -91,7 +91,7 @@ a:hover {
 </head>
 <body>
 	<h1>New Office</h1>
-	<form th:action="@{/ToAddService}" th:object="${allService}" method ="post">
+	<form th:action="@{/To-AddOffice(building_id=${building_id})}" th:object="${NewOffice}" method ="post">
 		<label>Office Name:</label>
 		<input type="text" th:value="${name}" th:field="*{name}" />		
 		<p><i th:text="${mess1}"></i></p>					
@@ -104,7 +104,7 @@ a:hover {
 		<input type="text" th:value="${description}" th:field="*{description}" />		
 		<p><i th:text="${mess2}"></i></p>
 		<br>		
-		<input type="submit" value="Add Service" id="submit">
+		<input type="submit" value="Add Office" id="submit">
 	</form>
 
 </body>
@@ -117,7 +117,7 @@ a:hover {
 			xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>AddProduct</title>
+<title>Add Office</title>
 <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -167,28 +167,42 @@ a:hover {
     <div class="row justify-content-center">
       <div class="col-md-8">
         <!-- <div class="card"> -->
-          <h1>Add Service</h1>
-<form th:action="@{/ToAddService}" th:object="${allService}" method="post">
-    <div class="form-group">
-        <label>Service Name:</label>
-        <input type="text"  th:field="*{name}" class="form-control"/>
-        <p><i th:text="${mess1}"></i></p>
-    </div>
-
-    <div class="form-group">
-        <label>Service Price:</label>
-        <input type="text"  th:field="*{price}" class="form-control"/>
-        <p><i th:text="${mess3}"></i></p>
-    </div>
-
-    <div class="form-group">
-        <label>Service Description:</label>
-        <input type="text"  th:field="*{description}" class="form-control"/>
-        <p><i th:text="${mess2}"></i></p>
-    </div>
-
-    <button type="submit" class="btn btn-primary" id="submit">Add Service</button>
-</form>
+          <h1>New Office</h1>
+	<form th:action="@{/To-EditOffice(building_id=${building_id})}" th:object="${EditOffice}" method ="post">
+	    <div class="form-group">
+			<input type="hidden" class="form-control" th:value="${id}" th:field="*{id}" id="name">
+			<p><i th:text="${mess1}"></i></p>
+		</div>
+		<div class="form-group">
+			<label for="name">Office Name:</label>
+			<input type="text" class="form-control" th:value="${name}" th:field="*{name}" id="name">
+			<p><i th:text="${mess1}"></i></p>
+		</div>
+		<div class="form-group">
+			<label for="price">Office Price:</label>
+			<input type="text" class="form-control" th:value="${address}" th:field="*{price}" id="price">
+			<p><i th:text="${mess3}"></i></p>
+		</div>
+		<div class="form-group">
+			<label for="description">Office Description:</label>
+			<input type="text" class="form-control" th:value="${description}" th:field="*{description}" id="description">
+			<p><i th:text="${mess2}"></i></p>
+		</div>
+		 <div class="form-group">
+			<input type="hidden" class="form-control"  th:field="*{company.id}" id="name">
+			<input type="hidden" class="form-control"  th:field="*{company.name}" id="name">
+			<input type="hidden" class="form-control" th:field="*{company.description}" id="name">
+			<p><i th:text="${mess1}"></i></p>
+		</div>
+		 <div class="form-group">
+			<input type="hidden" class="form-control"  th:field="*{building.id}" id="name">
+			<input type="hidden" class="form-control"  th:field="*{building.name}" id="name">
+			<input type="hidden" class="form-control"  th:field="*{building.address}" id="name">
+			<input type="hidden" class="form-control"  th:field="*{building.description}" id="name">
+			<p><i th:text="${mess1}"></i></p>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Edit Office" id="submit">
+	</form>
 
         <!-- </div> -->
       </div>

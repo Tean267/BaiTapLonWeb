@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Tean.ofM.Model.Admin;
 import com.Tean.ofM.Model.Building;
@@ -27,9 +28,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("/ToLogin")
-	public String ToInvoice(@ModelAttribute("admin") Admin admin ,Model model) {
+	public String ToInvoice(@ModelAttribute("admin") Admin admin ,Model model, RedirectAttributes attributes) {
 		Admin adminCheck = adminService.findStaffByUsernameAndPassword(admin.getUsername(), admin.getPassword());
 		if(adminCheck == null) {
+			attributes.addFlashAttribute("mess","Tên đăng nhập hoặc mật khẩu sai");
 			return "redirect:/";
 		}
 		return "redirect:/ShowBulding";

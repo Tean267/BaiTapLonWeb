@@ -128,6 +128,7 @@ public class OfficeController {
 		for(AllService allservice : serviceUse) {
 			totalMoney=totalMoney+allservice.getPrice();
 		}
+		totalMoney = totalMoney+ Integer.parseInt(office.getPrice());
 		invoice.setTotalMoney(totalMoney);
 		model.addAttribute("totalMoneyy",totalMoney);
 		model.addAttribute("serviceUse",serviceUse);
@@ -234,6 +235,20 @@ public class OfficeController {
 		return "redirect:/DetailOffice?id="+building_id;
 		
 	}
-	
+	@RequestMapping("/EditOffice/{building_id}")
+	public String EditOffice(@PathVariable("building_id") Long building_id, @RequestParam Long id,Model model) {
+		Office EditOffice = officeService.findById(id);
+		model.addAttribute("EditOffice",EditOffice);
+		model.addAttribute("building_id",building_id);
+		return "EditOffice";
+		
+	}
+	@PostMapping("/To-EditOffice")
+	public String To_EditOffice(@RequestParam("building_id") Long building_id,@ModelAttribute("EditOffice") Office EditOffice,Model model) {
+		
+		officeService.save(EditOffice);
+		return "redirect:/DetailOffice?id="+building_id;
+		
+	}
 
 }

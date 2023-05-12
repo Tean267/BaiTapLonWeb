@@ -175,8 +175,8 @@ a:hover {
           <h1 class="text-center mb-4">Edit Service</h1>
 	<form th:action="@{/ToEditService}" th:object="${editService}" method ="post" class="needs-validation" novalidate>
 		<div class="form-group">
-			<label for="id">Office id:</label>
-			<input type="text" th:value="${id}" th:field="*{id}" class="form-control" id="id" required/>
+			
+			<input type="hidden" th:value="${id}" th:field="*{id}" class="form-control" id="id" required/>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>		
