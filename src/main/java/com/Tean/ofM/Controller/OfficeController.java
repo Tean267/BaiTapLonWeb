@@ -245,10 +245,12 @@ public class OfficeController {
 	}
 	@PostMapping("/To-EditOffice")
 	public String To_EditOffice(@RequestParam("building_id") Long building_id,@ModelAttribute("EditOffice") Office EditOffice,Model model) {
-		
+//		List<AllService> serviceUse = companyService.serviceUse(EditOffice.getCompany().getId());	
+//		EditOffice.getCompany().setServices(serviceUse);
 		officeService.save(EditOffice);
 		return "redirect:/DetailOffice?id="+building_id;
 		
 	}
+	
 
 }
