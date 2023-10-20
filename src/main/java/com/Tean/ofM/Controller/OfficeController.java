@@ -187,8 +187,7 @@ public class OfficeController {
 		
 	}
 	@RequestMapping("/Stat")
-	public String ThongKe(
-							Model model) {
+	public String ThongKe(Model model) {
 		List<Invoice> listInvoices = invoiceService.InvoiceOfMonth(5,2023);
 		model.addAttribute("listInvoices",listInvoices);
 		return "ThongKe";

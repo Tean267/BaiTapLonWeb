@@ -24,7 +24,7 @@ public class AdminController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("admin",new Admin());
-		return "Login";
+		return "Login.html";
 	}
 	
 	@PostMapping("/ToLogin")
